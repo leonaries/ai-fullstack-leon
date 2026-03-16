@@ -20,7 +20,7 @@ export default function Home() {
       </main>
       <footer className="py-8 border-t border-[var(--card-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-[var(--text-secondary)]">
-          <p>&copy; 2026 李阳杰 (Leon). All rights reserved.</p>
+          <p>&copy; 2026 Leon. All rights reserved.</p>
         </div>
       </footer>
     </div>

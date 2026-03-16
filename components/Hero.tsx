@@ -120,18 +120,15 @@ export default function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-6xl md:text-8xl font-bold mb-2">
+              <h1 className="text-6xl md:text-8xl font-bold mb-4">
                 <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
-                  李阳杰
+                  Leon
                 </span>
               </h1>
-              <h2 className="text-3xl md:text-5xl font-semibold text-[var(--text-primary)] mb-4">
-                Leon
-              </h2>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]" />
                 <p className="text-xl md:text-2xl text-[var(--accent)] font-medium">
-                  Web3 大前端工程师
+                  Web3 全栈开发工程师
                 </p>
               </div>
             </motion.div>
