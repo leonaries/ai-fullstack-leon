@@ -1,7 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const experiences = [
@@ -51,62 +50,71 @@ const experiences = [
   },
 ];
 
+function TimelineDot({ index, isInView }: { index: number; isInView: boolean }) {
+  return (
+    <div className="absolute left-0 top-3 -ml-[9px] z-10">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={isInView ? { scale: 1 } : {}}
+        transition={{ duration: 0.4, delay: index * 0.15 + 0.1, type: 'spring', stiffness: 300 }}
+        className="relative"
+      >
+        <div className="w-[18px] h-[18px] rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] shadow-lg shadow-[var(--primary)]/40" />
+        {/* Pulse ring */}
+        {index === 0 && (
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-[var(--primary)]"
+            animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        )}
+      </motion.div>
+    </div>
+  );
+}
+
 function ExperienceItem({ experience, index }: { experience: typeof experiences[0]; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="relative pl-8 pb-12 last:pb-0"
+      initial={{ opacity: 0, x: -40 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
+      className="relative pl-10 pb-14 last:pb-0"
     >
-      {/* Timeline line */}
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--primary)] to-[var(--accent)]" />
+      {/* Timeline line segment */}
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--primary)]/60 to-[var(--card-border)]" />
 
-      {/* Timeline dot */}
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={isInView ? { scale: 1 } : { scale: 0 }}
-        transition={{ duration: 0.3, delay: index * 0.2 + 0.2 }}
-        className="absolute left-0 top-2 w-4 h-4 -ml-[7px] rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] shadow-lg shadow-[var(--primary)]/50"
-      />
+      <TimelineDot index={index} isInView={isInView} />
 
-      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 hover:border-[var(--primary)] transition-all duration-300 group">
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/0 to-[var(--accent)]/0 group-hover:from-[var(--primary)]/5 group-hover:to-[var(--accent)]/5 rounded-2xl transition-all duration-300" />
-
-        <div className="relative z-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-            <div>
-              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">
-                {experience.company}
-              </h3>
-              <p className="text-lg text-[var(--primary)] font-medium">
-                {experience.position}
-              </p>
-            </div>
-            <span className="text-sm text-[var(--text-secondary)] bg-[var(--background)] px-4 py-2 rounded-full border border-[var(--card-border)] mt-2 md:mt-0 inline-block">
-              {experience.period}
-            </span>
+      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 hover:border-[var(--primary)]/50 transition-all duration-300">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+          <div>
+            <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{experience.company}</h3>
+            <p className="text-lg text-[var(--primary)] font-medium">{experience.position}</p>
           </div>
-
-          <ul className="space-y-3">
-            {experience.responsibilities.map((resp, idx) => (
-              <motion.li
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ duration: 0.3, delay: index * 0.2 + 0.3 + idx * 0.1 }}
-                className="flex items-start text-[var(--text-secondary)] leading-relaxed"
-              >
-                <span className="text-[var(--accent)] mr-3 mt-1">▹</span>
-                <span>{resp}</span>
-              </motion.li>
-            ))}
-          </ul>
+          <span className="text-sm text-[var(--accent)] bg-[var(--accent)]/10 px-4 py-1.5 rounded-full border border-[var(--accent)]/20 mt-2 md:mt-0 inline-block font-medium">
+            {experience.period}
+          </span>
         </div>
+
+        <ul className="space-y-3">
+          {experience.responsibilities.map((resp, idx) => (
+            <motion.li
+              key={idx}
+              initial={{ opacity: 0, x: -15 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.3, delay: index * 0.15 + 0.2 + idx * 0.08 }}
+              className="flex items-start text-[var(--text-secondary)] leading-relaxed"
+            >
+              <span className="text-[var(--accent)] mr-3 mt-1 shrink-0">▹</span>
+              <span>{resp}</span>
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </motion.div>
   );
@@ -122,19 +130,17 @@ export default function Experience() {
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            工作经历
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">工作经历</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full" />
         </motion.div>
 
         <div className="relative">
-          {experiences.map((experience, index) => (
-            <ExperienceItem key={index} experience={experience} index={index} />
+          {experiences.map((exp, i) => (
+            <ExperienceItem key={i} experience={exp} index={i} />
           ))}
         </div>
       </div>
