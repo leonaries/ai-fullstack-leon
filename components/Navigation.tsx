@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
 const navItems = [
@@ -23,29 +23,36 @@ export default function Navigation() {
       setScrolled(window.scrollY > 50);
 
       const sections = navItems.map(item => item.href.slice(1));
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
-        return false;
-      });
-
-      if (current) setActiveSection(current);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[var(--background)]/80 backdrop-blur-lg border-b border-[var(--card-border)]'
+          ? 'bg-[var(--background)]/70 backdrop-blur-xl border-b border-[var(--card-border)]/50 shadow-lg shadow-black/5'
           : 'bg-transparent'
       }`}
     >
@@ -59,12 +66,13 @@ export default function Navigation() {
             Leon
           </motion.a>
 
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors relative ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all relative ${
                   activeSection === item.href.slice(1)
                     ? 'text-[var(--primary)]'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -73,7 +81,7 @@ export default function Navigation() {
                 {item.name}
                 {activeSection === item.href.slice(1) && (
                   <motion.div
-                    layoutId="activeSection"
+                    layoutId="nav-active"
                     className="absolute inset-0 bg-[var(--primary)]/10 rounded-lg -z-10"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
@@ -82,11 +90,12 @@ export default function Navigation() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             <button
-              className="md:hidden text-[var(--text-primary)] p-2"
+              className="md:hidden text-[var(--text-primary)] p-2 rounded-lg hover:bg-[var(--card-bg)] transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -98,32 +107,37 @@ export default function Navigation() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile menu */}
+      {/* Mobile menu */}
+      <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-[var(--card-border)]"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[var(--background)]/95 backdrop-blur-xl border-b border-[var(--card-border)]"
           >
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === item.href.slice(1)
-                    ? 'text-[var(--primary)] bg-[var(--primary)]/10'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--card-bg)]'
-                }`}
-              >
-                {item.name}
-              </a>
-            ))}
+            <div className="px-4 py-4 space-y-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    activeSection === item.href.slice(1)
+                      ? 'text-[var(--primary)] bg-[var(--primary)]/10'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--card-bg)]'
+                  }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
           </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </motion.nav>
   );
 }
