@@ -128,7 +128,7 @@ export default function Hero() {
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]" />
                 <p className="text-xl md:text-2xl text-[var(--accent)] font-medium">
-                  Web3 全栈开发工程师
+                  AI 全栈开发工程师
                 </p>
               </div>
             </motion.div>
