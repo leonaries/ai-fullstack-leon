@@ -28,7 +28,7 @@ const skills = [
   {
     category: 'AI 工具 & 应用',
     icon: '🤖',
-    items: ['Cursor', 'Claude Code', 'Codex', 'Gemini', 'OpenClaw', 'MCP', 'AI Agent', 'RAG', 'Workflow'],
+    items: ['Cursor', 'Claude Code', 'Codex', 'Gemini', 'OpenClaw', 'MCP', 'AI Agent', 'RAG', 'LangChain', 'Workflow'],
   },
 ];
 
