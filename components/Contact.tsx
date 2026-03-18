@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 const socialLinks = [
   {
@@ -15,49 +15,11 @@ const socialLinks = [
     url: 'https://github.com',
     color: 'hover:text-[#333]',
   },
-  {
-    name: 'Twitter',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-    url: 'https://twitter.com',
-    color: 'hover:text-[#1DA1F2]',
-  },
-  {
-    name: 'LinkedIn',
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-      </svg>
-    ),
-    url: 'https://linkedin.com',
-    color: 'hover:text-[#0077B5]',
-  },
 ];
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   return (
     <section id="contact" className="py-20 relative">
@@ -75,24 +37,40 @@ export default function Contact() {
           <div className="w-20 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="max-w-2xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-8"
           >
-            <div>
-              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-4">
                 让我们一起创造精彩
               </h3>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
-                如果您对 Web3 开发、全栈技术或者任何合作机会感兴趣，欢迎随时与我联系。我很乐意与您交流想法，探讨技术，或者参与有趣的项目。
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                如果您对 Web3 开发、AI 应用、全栈技术或者任何合作机会感兴趣，欢迎随时与我联系。
               </p>
             </div>
 
             <div className="space-y-4">
+              {/* WeChat */}
+              <motion.div
+                className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]"
+                whileHover={{ x: 5 }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#07C160] to-[#06AD56] flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-2.036 2.87c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.983.97-.983zm4.072 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.983.97-.983z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm text-[var(--text-secondary)]">微信</p>
+                  <p className="text-[var(--text-primary)] font-medium">Areis9527</p>
+                </div>
+              </motion.div>
+
+              {/* Email */}
               <motion.a
                 href="mailto:leonaries9527@gmail.com"
                 className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--primary)] transition-all group"
@@ -112,9 +90,10 @@ export default function Contact() {
               </motion.a>
             </div>
 
-            <div>
+            {/* Social Links */}
+            <div className="text-center">
               <p className="text-[var(--text-secondary)] mb-4">关注我的社交媒体</p>
-              <div className="flex gap-4">
+              <div className="flex justify-center gap-4">
                 {socialLinks.map((link, index) => (
                   <motion.a
                     key={link.name}
@@ -133,83 +112,6 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-                  姓名
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 transition-all"
-                  placeholder="您的姓名"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-                  邮箱
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 transition-all"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-                  消息
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 transition-all resize-none"
-                  placeholder="您想说些什么..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={status === 'sending'}
-                className="w-full px-8 py-4 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white rounded-lg font-medium text-lg shadow-lg shadow-[var(--primary)]/50 hover:shadow-xl hover:shadow-[var(--primary)]/70 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: status === 'sending' ? 1 : 1.02 }}
-                whileTap={{ scale: status === 'sending' ? 1 : 0.98 }}
-              >
-                {status === 'sending' ? '发送中...' : status === 'success' ? '发送成功！' : '发送消息'}
-              </motion.button>
-
-              {status === 'success' && (
-                <motion.p
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-green-500"
-                >
-                  感谢您的消息！我会尽快回复您。
-                </motion.p>
-              )}
-            </form>
           </motion.div>
         </div>
       </div>

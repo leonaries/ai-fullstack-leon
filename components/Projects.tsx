@@ -2,34 +2,9 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 import CardHoverEffect from './CardHoverEffect';
-
-const projects = [
-  {
-    name: 'Phoenix DeFi Dapp',
-    description: '稳定币生态平台，提供借贷、质押等 DeFi 服务。通过优化 RPC 调用策略，将性能提升 2-5 倍。',
-    tech: ['React 19', 'Wagmi2', 'Viem', 'TypeScript', 'Tailwind CSS'],
-    link: 'https://dapp.phnx.finance',
-  },
-  {
-    name: 'Phoenix Website',
-    description: '品牌官网，采用 Three.js 打造火凤凰 3D 动画和星空特效，结合 Framer Motion 实现流畅交互。',
-    tech: ['Next.js 15', 'Three.js', 'Framer Motion', 'TypeScript'],
-    link: 'https://phnx.finance',
-  },
-  {
-    name: 'DappLink MPC 资管系统',
-    description: 'Web3 商户全链路门户，提供 MPC 钱包、资产管理、交易监控。Monorepo 架构提升代码复用效率。',
-    tech: ['React 18', 'Wagmi', 'Monorepo', 'TypeScript', 'Ant Design'],
-    link: null,
-  },
-  {
-    name: '物流通',
-    description: '物流管理平台，集成 Echarts 实现复杂数据可视化。组件化和工程化实践将开发效率提升 100%。',
-    tech: ['React', 'TypeScript', 'Echarts', 'Ant Design', 'Webpack'],
-    link: null,
-  },
-];
+import { projects } from '@/app/projects-data';
 
 export default function Projects() {
   const ref = useRef(null);
@@ -75,7 +50,7 @@ export default function Projects() {
                     )}
                   </div>
                   <p className="text-[var(--text-secondary)] leading-relaxed mb-6 flex-1">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((t, i) => (
                       <span
                         key={i}
@@ -85,6 +60,15 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-1 text-sm text-[var(--accent)] hover:text-[var(--primary)] transition-colors font-medium"
+                  >
+                    查看详情
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               </CardHoverEffect>
             </motion.div>

@@ -167,13 +167,13 @@ export default function Hero() {
           >
             <div className="p-8 rounded-2xl bg-[var(--card-bg)]/50 border border-[var(--card-border)] backdrop-blur-sm">
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                专注于 Web3 全栈开发，精通 React、Next.js 和区块链技术。
+                专注于 Web3 全栈开发与 AI 应用，精通 React、Next.js、Node.js、Python 和区块链技术。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                致力于构建高性能、用户友好的去中心化应用，推动 Web3 生态发展。
+                热衷于将 AI Agent、RAG、Workflow 等前沿技术融入实际产品，打造智能化开发工作流。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                7 年前端开发经验，从传统互联网到 Web3 DeFi，持续探索技术边界。
+                7 年前端开发经验，2 年全栈开发经验，从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
               </p>
               {/* Decorative corner accents */}
               <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-[var(--primary)]/30 rounded-tr-2xl pointer-events-none" />

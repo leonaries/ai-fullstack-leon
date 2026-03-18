@@ -14,7 +14,7 @@ const aboutCards = [
   {
     icon: '💼',
     title: '当前职位',
-    content: '高级全栈开发 @ 椭圆曲线科技',
+    content: '高级全栈开发 @ Dapplink',
     className: 'md:col-span-1',
   },
   {
@@ -26,19 +26,19 @@ const aboutCards = [
   {
     icon: '🛠',
     title: '技术栈',
-    tags: ['React', 'Next.js', 'Vue', 'TypeScript', 'Node.js', 'Tailwind', 'Three.js', 'Docker', 'K8S'],
+    tags: ['React', 'Next.js', 'Vue', 'TypeScript', 'Node.js', 'Python', 'Tailwind', 'Three.js', 'PostgreSQL', 'Docker', 'K8S'],
     className: 'md:col-span-2',
   },
   {
     icon: '🤖',
     title: 'AI 工具',
-    content: 'Cursor / Claude Code / MCP',
+    content: 'Cursor / Claude Code / Codex / Gemini / OpenClaw / MCP / AI Agent / RAG / Workflow',
     className: 'md:col-span-1',
   },
   {
     icon: '📚',
     title: '兴趣爱好',
-    content: '量化交易 / 区块链经济模型 / 读书 / 运动',
+    content: 'AI Agent 开发 / 搭建 AI 研发团队机器人 / AI 养小龙虾 / 读书 / 运动',
     className: 'md:col-span-2 lg:col-span-3',
   },
 ];

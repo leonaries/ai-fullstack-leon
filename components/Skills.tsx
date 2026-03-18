@@ -18,12 +18,17 @@ const skills = [
   {
     category: '后端 & DevOps',
     icon: '🚀',
-    items: ['Node.js', 'Docker', 'K8S', 'AWS', 'PM2', 'Nginx'],
+    items: ['Node.js', 'Python', 'FastAPI', 'Flask', 'PostgreSQL', 'Docker', 'K8S', 'AWS', 'PM2', 'Nginx'],
   },
   {
-    category: '工程化 & AI',
+    category: '工程化',
     icon: '🛠️',
-    items: ['Webpack', 'Vite', 'CI/CD', 'Cursor', 'Claude Code', 'Git'],
+    items: ['Webpack', 'Vite', 'CI/CD', 'Git', 'Monorepo', 'ESLint'],
+  },
+  {
+    category: 'AI 工具 & 应用',
+    icon: '🤖',
+    items: ['Cursor', 'Claude Code', 'Codex', 'Gemini', 'OpenClaw', 'MCP', 'AI Agent', 'RAG', 'Workflow'],
   },
 ];
 

@@ -6,7 +6,7 @@ import { useRef } from 'react';
 const experiences = [
   {
     period: '2024 - 至今',
-    company: '椭圆曲线科技',
+    company: 'Dapplink',
     position: '高级全栈开发',
     responsibilities: [
       '负责 Phoenix DeFi 平台的全栈开发，使用 React 19 + Wagmi2 + Viem 构建高性能 DApp',
@@ -17,7 +17,7 @@ const experiences = [
   },
   {
     period: '2021 - 2024',
-    company: '中交车旺',
+    company: '北京中交车旺科技有限公司',
     position: '高级前端开发',
     responsibilities: [
       '主导物流通平台开发，使用 React + TypeScript 构建企业级应用',
