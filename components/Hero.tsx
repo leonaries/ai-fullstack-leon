@@ -170,7 +170,7 @@ export default function Hero() {
                 专注于 Web3 全栈开发与 AI 应用，精通 React、Next.js、Node.js、Python 和区块链技术。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                热衷于将 AI Agent、RAG、Workflow 等前沿技术融入实际产品，打造智能化开发工作流。
+                热衷于将 AI Agent、RAG、Workflow 等前沿技术融入实际产品，打造智能化开发工作流。主导团队 AI 工程化提效，引入 OpenClaw 与 AI-Agent + RAG 知识库，实现自动化运营及轻量级产品全流程自动化。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
                 7 年前端开发经验，2 年全栈开发经验，从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
