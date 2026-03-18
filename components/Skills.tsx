@@ -18,7 +18,7 @@ const skills = [
   {
     category: '后端 & DevOps',
     icon: '🚀',
-    items: ['Node.js', 'Python', 'FastAPI', 'Flask', 'PostgreSQL', 'Docker', 'K8S', 'AWS', 'PM2', 'Nginx'],
+    items: ['Node.js', 'Python', 'FastAPI', 'Flask', 'PostgreSQL', 'Supabase', 'Docker', 'K8S', 'AWS', 'PM2', 'Nginx'],
   },
   {
     category: '工程化',
