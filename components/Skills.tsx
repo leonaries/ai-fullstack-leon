@@ -6,29 +6,34 @@ import CardHoverEffect from './CardHoverEffect';
 
 const skills = [
   {
-    category: '前端基础',
+    category: '前端开发',
     icon: '⚛️',
-    items: ['React', 'Vue', 'Next.js', 'Nuxt', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    items: ['React', 'Vue', 'Next.js', 'Nuxt', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'SSR', '响应式布局', '国际化', '多端适配'],
   },
   {
     category: 'Web3',
     icon: '🔗',
-    items: ['Wagmi', 'Viem', 'Ethers.js', 'Solidity', 'DeFi', 'Smart Contracts'],
+    items: ['Wagmi', 'Viem', 'Ethers.js', 'Reown AppKit', '钱包接入', '合约调用', '事件监听', '链上数据读取', '交易生命周期', 'Gas/Nonce'],
   },
   {
-    category: '后端 & DevOps',
+    category: '后端开发',
     icon: '🚀',
-    items: ['Node.js', 'Python', 'FastAPI', 'Flask', 'PostgreSQL', 'Supabase', 'Docker', 'K8S', 'AWS', 'PM2', 'Nginx'],
+    items: ['Node.js', 'NestJS', 'TypeORM', 'Python', 'FastAPI', 'SQLAlchemy', 'LangChain', 'PostgreSQL', 'Supabase', 'Docker'],
   },
   {
     category: '工程化',
     icon: '🛠️',
-    items: ['Webpack', 'Vite', 'CI/CD', 'Git', 'Monorepo', 'ESLint'],
+    items: ['Webpack', 'Vite', 'pnpm', 'Lerna', 'Storybook', 'Biome', 'Jenkins', 'OpenAPI-TypeScript', 'CI/CD', 'Git', 'Monorepo'],
   },
   {
-    category: 'AI 工具 & 应用',
+    category: 'AI 能力',
     icon: '🤖',
-    items: ['Cursor', 'Claude Code', 'Codex', 'Gemini', 'OpenClaw', 'MCP', 'AI Agent', 'RAG', 'LangChain', 'Workflow'],
+    items: ['Claude Code', 'Codex', 'Gemini', 'Dify', 'Coze', 'Multi-Agent', 'Skills', 'RAG', 'MCP', 'LangChain', 'Workflow', 'LLM 应用集成'],
+  },
+  {
+    category: '性能与基建',
+    icon: '📐',
+    items: ['浏览器渲染机制', 'HTTP 协议', '缓存策略', '首屏优化', '构建优化', '通用组件封装', '低代码报表', '接口层抽象', '规范治理'],
   },
 ];
 

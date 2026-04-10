@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leon - AI 全栈开发工程师",
-  description: "专注于 Web3 全栈开发，精通 React、Next.js 和区块链技术。致力于构建高性能、用户友好的去中心化应用。",
-  keywords: ["Web3", "DeFi", "React", "Next.js", "区块链", "全栈开发", "Wagmi", "Solidity"],
+  title: "Leon - 全栈开发工程师（偏前端）",
+  description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效。",
+  keywords: ["Web3", "DeFi", "React", "Next.js", "TypeScript", "Node.js", "全栈开发", "AI", "Wagmi", "NestJS", "Python"],
   authors: [{ name: "Leon" }],
   openGraph: {
-    title: "Leon - AI 全栈开发工程师",
-    description: "专注于 Web3 全栈开发，精通 React、Next.js 和区块链技术",
+    title: "Leon - 全栈开发工程师（偏前端）",
+    description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
     url: "https://leonaries.cn",
     siteName: "Leon Portfolio",
     locale: "zh_CN",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leon - AI 全栈开发工程师",
-    description: "专注于 Web3 全栈开发，精通 React、Next.js 和区块链技术",
+    title: "Leon - 全栈开发工程师（偏前端）",
+    description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
   },
 };
 
@@ -49,15 +49,15 @@ export default function RootLayout({
               "@type": "Person",
               name: "Leon",
               
-              jobTitle: "AI 全栈开发工程师",
-              description: "专注于 Web3 全栈开发，精通 React、Next.js 和区块链技术",
+              jobTitle: "全栈开发工程师（偏前端）",
+              description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
               email: "leonaries9527@gmail.com",
               url: "https://leonaries.cn",
               alumniOf: {
                 "@type": "EducationalOrganization",
                 name: "西南财经大学",
               },
-              knowsAbout: ["Web3", "DeFi", "React", "Next.js", "TypeScript", "Solidity", "Blockchain"],
+              knowsAbout: ["Web3", "DeFi", "React", "Next.js", "TypeScript", "Node.js", "NestJS", "Python", "AI", "LangChain", "RAG", "Multi-Agent"],
             }),
           }}
         />

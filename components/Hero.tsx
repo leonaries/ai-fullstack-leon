@@ -128,7 +128,7 @@ export default function Hero() {
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]" />
                 <p className="text-xl md:text-2xl text-[var(--accent)] font-medium">
-                  AI 全栈开发工程师
+                  全栈开发工程师（偏前端）
                 </p>
               </div>
             </motion.div>
@@ -167,13 +167,13 @@ export default function Hero() {
           >
             <div className="p-8 rounded-2xl bg-[var(--card-bg)]/50 border border-[var(--card-border)] backdrop-blur-sm">
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                专注于 Web3 全栈开发与 AI 应用，精通 React、Next.js、Node.js、Python 和区块链技术。
+                8 年全栈开发经验（偏前端），以 React、TypeScript、Node.js 为核心技术栈，持续负责 Web 应用从 0 到 1 搭建、核心模块开发与持续优化。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                热衷于将 AI Agent、RAG、Workflow 等前沿技术融入实际产品，打造智能化开发工作流。主导团队 AI 工程化提效，引入 OpenClaw 与 AI-Agent + RAG 知识库，实现自动化运营及轻量级产品全流程自动化。
+                熟练使用 AI 辅助工具与 Agent/Skills/MCP 大幅提升研发效率，能够将 AI 融入需求分析、研发、测试全流程。主导团队 AI 工程化提效，落地 Multi-Agent + Skills + RAG 与自动化流程。
               </p>
               <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                7 年前端开发经验，2 年全栈开发经验，从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
+                具备前端基础建设经验，推动过 Monorepo 架构、代码规范、通用组件、低代码报表组件、OpenAPI 类型链路、npm 私仓等落地。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
               </p>
               {/* Decorative corner accents */}
               <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-[var(--primary)]/30 rounded-tr-2xl pointer-events-none" />
