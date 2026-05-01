@@ -1,20 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 
-function GridBackground() {
+const GridBackground = memo(function GridBackground() {
   return (
     <div className="absolute inset-0">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e0e0e0_1px,transparent_1px),linear-gradient(to_bottom,#e0e0e0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#222_1px,transparent_1px),linear-gradient(to_bottom,#222_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--background)]" />
     </div>
   );
-}
+});
 
-function Particles() {
+const Particles = memo(function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -24,57 +24,87 @@ function Particles() {
     if (!ctx) return;
 
     let animationId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    const PARTICLE_COUNT = 40;
+    const CONNECTION_DIST = 120;
+    const CONNECTION_DIST_SQ = CONNECTION_DIST * CONNECTION_DIST;
 
     const isDark = document.documentElement.classList.contains('dark');
     const particleColor = isDark ? '255, 255, 255' : '0, 0, 0';
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener('resize', resize);
 
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.3 + 0.05,
-      });
+    // Debounced resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // Pre-allocate typed arrays for better performance
+    const px = new Float32Array(PARTICLE_COUNT);
+    const py = new Float32Array(PARTICLE_COUNT);
+    const vx = new Float32Array(PARTICLE_COUNT);
+    const vy = new Float32Array(PARTICLE_COUNT);
+    const sizes = new Float32Array(PARTICLE_COUNT);
+    const opacities = new Float32Array(PARTICLE_COUNT);
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      px[i] = Math.random() * w;
+      py[i] = Math.random() * h;
+      vx[i] = (Math.random() - 0.5) * 0.3;
+      vy[i] = (Math.random() - 0.5) * 0.3;
+      sizes[i] = Math.random() * 1.5 + 0.5;
+      opacities[i] = Math.random() * 0.25 + 0.05;
     }
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particleColor}, ${p.opacity})`;
-        ctx.fill();
-      });
+      const cw = canvas.style.width ? parseInt(canvas.style.width) : w;
+      const ch = canvas.style.height ? parseInt(canvas.style.height) : h;
 
-      particles.forEach((a, i) => {
-        particles.slice(i + 1).forEach((b) => {
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
+      ctx.clearRect(0, 0, cw, ch);
+
+      // Update positions and draw particles in one pass
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        px[i] += vx[i];
+        py[i] += vy[i];
+        if (px[i] < 0 || px[i] > cw) vx[i] *= -1;
+        if (py[i] < 0 || py[i] > ch) vy[i] *= -1;
+
+        ctx.beginPath();
+        ctx.arc(px[i], py[i], sizes[i], 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleColor}, ${opacities[i]})`;
+        ctx.fill();
+      }
+
+      // Draw connections - avoid sqrt by comparing squared distances
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < PARTICLE_COUNT - 1; i++) {
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const dx = px[i] - px[j];
+          const dy = py[i] - py[j];
+          const distSq = dx * dx + dy * dy;
+          if (distSq < CONNECTION_DIST_SQ) {
+            const alpha = 0.04 * (1 - Math.sqrt(distSq) / CONNECTION_DIST);
             ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(${particleColor}, ${0.04 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
+            ctx.moveTo(px[i], py[i]);
+            ctx.lineTo(px[j], py[j]);
+            ctx.strokeStyle = `rgba(${particleColor}, ${alpha})`;
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
 
       animationId = requestAnimationFrame(animate);
     };
@@ -82,12 +112,13 @@ function Particles() {
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
     };
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />;
-}
+});
 
 export default function Hero() {
   return (

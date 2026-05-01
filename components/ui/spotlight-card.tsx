@@ -1,6 +1,38 @@
 'use client';
 
-import React, { useEffect, useRef, type ReactNode } from 'react';
+import React, { useRef, useEffect, type ReactNode } from 'react';
+
+// Single global pointer tracker shared across all SpotlightCard instances
+let globalX = 0;
+let globalY = 0;
+let listenerAttached = false;
+const cards = new Set<HTMLDivElement>();
+
+function syncPointer(e: PointerEvent) {
+  globalX = e.clientX;
+  globalY = e.clientY;
+  // Batch update all cards in one pass
+  for (const card of cards) {
+    card.style.setProperty('--x', globalX.toFixed(0));
+    card.style.setProperty('--y', globalY.toFixed(0));
+    card.style.setProperty('--xp', (globalX / window.innerWidth).toFixed(2));
+    card.style.setProperty('--yp', (globalY / window.innerHeight).toFixed(2));
+  }
+}
+
+function ensureListener() {
+  if (!listenerAttached) {
+    document.addEventListener('pointermove', syncPointer, { passive: true });
+    listenerAttached = true;
+  }
+}
+
+function removeListenerIfEmpty() {
+  if (cards.size === 0 && listenerAttached) {
+    document.removeEventListener('pointermove', syncPointer);
+    listenerAttached = false;
+  }
+}
 
 interface SpotlightCardProps {
   children: ReactNode;
@@ -14,19 +46,14 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const syncPointer = (e: PointerEvent) => {
-      const { clientX: x, clientY: y } = e;
-
-      if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
-      }
+    const el = cardRef.current;
+    if (!el) return;
+    cards.add(el);
+    ensureListener();
+    return () => {
+      cards.delete(el);
+      removeListenerIfEmpty();
     };
-
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
   }, []);
 
   return (
