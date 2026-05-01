@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import CardHoverEffect from './CardHoverEffect';
+import { SpotlightCard } from './ui/spotlight-card';
 
 const aboutCards = [
   {
@@ -55,6 +55,10 @@ export default function About() {
 
   return (
     <section id="about" className="py-20 relative">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -63,8 +67,9 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
+          <span className="text-sm font-mono text-[var(--text-secondary)] tracking-widest uppercase mb-2 block">About Me</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">关于我</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[var(--primary)] mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -76,16 +81,16 @@ export default function About() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={card.className}
             >
-              <CardHoverEffect className="h-full">
-                <div className="relative p-6 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] h-full">
+              <SpotlightCard className="h-full">
+                <div className="p-6 h-full">
                   <div className="text-4xl mb-4">{card.icon}</div>
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{card.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2 font-mono">{card.title}</h3>
                   {card.tags ? (
                     <div className="flex flex-wrap gap-2">
                       {card.tags.map((tag, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 text-sm bg-[var(--background)] text-[var(--primary)] rounded-full border border-[var(--card-border)]"
+                          className="px-3 py-1 text-sm text-[var(--text-secondary)] rounded-full border border-[var(--card-border)] font-mono"
                         >
                           {tag}
                         </span>
@@ -95,7 +100,7 @@ export default function About() {
                     <p className="text-[var(--text-secondary)] leading-relaxed">{card.content}</p>
                   )}
                 </div>
-              </CardHoverEffect>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

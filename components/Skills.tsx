@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import CardHoverEffect from './CardHoverEffect';
+import { SpotlightCard } from './ui/spotlight-card';
 
 const skills = [
   {
@@ -43,6 +43,10 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 relative">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -51,8 +55,9 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
+          <span className="text-sm font-mono text-[var(--text-secondary)] tracking-widest uppercase mb-2 block">Skills</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">技能专长</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[var(--primary)] mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -63,11 +68,11 @@ export default function Skills() {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <CardHoverEffect className="h-full">
-                <div className="relative p-6 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] h-full">
+              <SpotlightCard className="h-full">
+                <div className="p-6 h-full">
                   <div className="flex items-center gap-3 mb-6">
                     <span className="text-4xl">{skill.icon}</span>
-                    <h3 className="text-2xl font-bold text-[var(--text-primary)]">{skill.category}</h3>
+                    <h3 className="text-2xl font-bold text-[var(--text-primary)] font-mono">{skill.category}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item, idx) => (
@@ -76,14 +81,14 @@ export default function Skills() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.3, delay: index * 0.1 + 0.3 + idx * 0.05 }}
-                        className="px-4 py-2 text-sm bg-[var(--background)] text-[var(--text-primary)] rounded-lg border border-[var(--card-border)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all cursor-default"
+                        className="px-4 py-2 text-sm text-[var(--text-secondary)] rounded-lg border border-[var(--card-border)] hover:border-[var(--primary)] hover:text-[var(--text-primary)] transition-all cursor-default font-mono"
                       >
                         {item}
                       </motion.span>
                     ))}
                   </div>
                 </div>
-              </CardHoverEffect>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

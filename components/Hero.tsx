@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
+import { SplineScene } from '@/components/ui/splite';
+import { Spotlight } from '@/components/ui/spotlight';
 
 function GridBackground() {
   return (
     <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#222_1px,transparent_1px),linear-gradient(to_bottom,#222_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e0e0e0_1px,transparent_1px),linear-gradient(to_bottom,#e0e0e0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#222_1px,transparent_1px),linear-gradient(to_bottom,#222_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--background)]" />
     </div>
   );
@@ -24,6 +26,9 @@ function Particles() {
     let animationId: number;
     const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
 
+    const isDark = document.documentElement.classList.contains('dark');
+    const particleColor = isDark ? '255, 255, 255' : '0, 0, 0';
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -35,10 +40,10 @@ function Particles() {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.1,
+        opacity: Math.random() * 0.3 + 0.05,
       });
     }
 
@@ -51,11 +56,10 @@ function Particles() {
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(99, 102, 241, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${particleColor}, ${p.opacity})`;
         ctx.fill();
       });
 
-      // Draw connections
       particles.forEach((a, i) => {
         particles.slice(i + 1).forEach((b) => {
           const dx = a.x - b.x;
@@ -65,7 +69,7 @@ function Particles() {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `rgba(${particleColor}, ${0.04 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -86,62 +90,53 @@ function Particles() {
 }
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]);
-
   return (
     <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
       <GridBackground />
       <Particles />
 
-      {/* Mouse-follow glow */}
-      <div
-        className="absolute w-[500px] h-[500px] rounded-full opacity-15 blur-3xl pointer-events-none transition-transform duration-100"
-        style={{
-          background: 'radial-gradient(circle, var(--primary) 0%, var(--accent) 50%, transparent 70%)',
-          transform: `translate(${mousePos.x - 250}px, ${mousePos.y - 250}px)`,
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Name + Title */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left: Name + Title + Intro */}
           <div>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-6xl md:text-8xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
-                  Leon
-                </span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] mb-6">
+                <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
+                <span className="text-sm text-[var(--text-secondary)] font-mono">AVAILABLE FOR WORK</span>
+              </div>
+              <h1 className="text-6xl md:text-8xl font-bold mb-4 text-[var(--text-primary)]">
+                Leon
               </h1>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]" />
-                <p className="text-xl md:text-2xl text-[var(--accent)] font-medium">
-                  全栈开发工程师（偏前端）
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-[2px] bg-[var(--primary)]" />
+                <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium font-mono">
+                  全栈开发工程师
                 </p>
               </div>
             </motion.div>
 
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8 max-w-lg"
+            >
+              8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
+            </motion.p>
+
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
                 href="#projects"
-                className="px-8 py-4 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white rounded-lg font-medium text-lg shadow-lg shadow-[var(--primary)]/25 hover:shadow-xl hover:shadow-[var(--primary)]/40 transition-all text-center"
+                className="px-8 py-4 bg-[var(--primary)] text-[var(--background)] rounded-lg font-bold text-lg hover:opacity-90 transition-all text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -149,36 +144,53 @@ export default function Hero() {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="px-8 py-4 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] rounded-lg font-medium text-lg hover:border-[var(--primary)] transition-all text-center"
+                className="px-8 py-4 bg-transparent border border-[var(--card-border)] text-[var(--text-primary)] rounded-lg font-medium text-lg hover:border-[var(--primary)] transition-all text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 联系我
               </motion.a>
             </motion.div>
+
+            {/* Tech tags */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap gap-2 mt-8"
+            >
+              {['React', 'TypeScript', 'Web3', 'AI', 'Node.js'].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-xs font-mono text-[var(--text-secondary)] border border-[var(--card-border)] rounded"
+                >
+                  {tag}
+                </span>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right: Intro */}
+          {/* Right: 3D Robot Scene */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative h-[500px] lg:h-[600px]"
           >
-            <div className="p-8 rounded-2xl bg-[var(--card-bg)]/50 border border-[var(--card-border)] backdrop-blur-sm">
-              <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                8 年全栈开发经验（偏前端），以 React、TypeScript、Node.js 为核心技术栈，持续负责 Web 应用从 0 到 1 搭建、核心模块开发与持续优化。
-              </p>
-              <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                熟练使用 AI 辅助工具与 Agent/Skills/MCP 大幅提升研发效率，能够将 AI 融入需求分析、研发、测试全流程。主导团队 AI 工程化提效，落地 Multi-Agent + Skills + RAG 与自动化流程。
-              </p>
-              <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mt-4">
-                具备前端基础建设经验，推动过 Monorepo 架构、代码规范、通用组件、低代码报表组件、OpenAPI 类型链路、npm 私仓等落地。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
-              </p>
-              {/* Decorative corner accents */}
-              <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-[var(--primary)]/30 rounded-tr-2xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-[var(--accent)]/30 rounded-bl-2xl pointer-events-none" />
+            <Spotlight
+              className="-top-40 left-0 md:left-60 md:-top-20"
+              fill="rgba(150, 150, 150, 0.12)"
+              size={300}
+            />
+            <div className="w-full h-full dark:invert dark:brightness-110 dark:contrast-90 transition-[filter] duration-500">
+              <SplineScene
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
+            {/* Decorative frame */}
+            <div className="absolute top-4 right-4 w-24 h-24 border-t border-r border-[var(--card-border)] rounded-tr-xl pointer-events-none" />
+            <div className="absolute bottom-4 left-4 w-24 h-24 border-b border-l border-[var(--card-border)] rounded-bl-xl pointer-events-none" />
           </motion.div>
         </div>
       </div>
@@ -193,7 +205,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-[var(--text-secondary)]/50 rounded-full flex items-start justify-center p-2"
+          className="w-6 h-10 border-2 border-[var(--card-border)] rounded-full flex items-start justify-center p-2"
         >
           <div className="w-1 h-2 bg-[var(--text-secondary)] rounded-full" />
         </motion.div>

@@ -59,8 +59,7 @@ function TimelineDot({ index, isInView }: { index: number; isInView: boolean }) 
         transition={{ duration: 0.4, delay: index * 0.15 + 0.1, type: 'spring', stiffness: 300 }}
         className="relative"
       >
-        <div className="w-[18px] h-[18px] rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] shadow-lg shadow-[var(--primary)]/40" />
-        {/* Pulse ring */}
+        <div className="w-[18px] h-[18px] rounded-full bg-[var(--primary)] shadow-sm" />
         {index === 0 && (
           <motion.div
             className="absolute inset-0 rounded-full border-2 border-[var(--primary)]"
@@ -85,18 +84,17 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
       transition={{ duration: 0.5, delay: index * 0.15 }}
       className="relative pl-10 pb-14 last:pb-0"
     >
-      {/* Timeline line segment */}
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--primary)]/60 to-[var(--card-border)]" />
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-[var(--card-border)]" />
 
       <TimelineDot index={index} isInView={isInView} />
 
-      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 hover:border-[var(--primary)]/50 transition-all duration-300">
+      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 hover:border-[var(--primary)]/40 transition-all duration-300">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
           <div>
             <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{experience.company}</h3>
-            <p className="text-lg text-[var(--primary)] font-medium">{experience.position}</p>
+            <p className="text-lg text-[var(--text-primary)] font-medium font-mono">{experience.position}</p>
           </div>
-          <span className="text-sm text-[var(--accent)] bg-[var(--accent)]/10 px-4 py-1.5 rounded-full border border-[var(--accent)]/20 mt-2 md:mt-0 inline-block font-medium">
+          <span className="text-sm text-[var(--text-secondary)] bg-[var(--card-bg)] px-4 py-1.5 rounded-full border border-[var(--card-border)] mt-2 md:mt-0 inline-block font-mono">
             {experience.period}
           </span>
         </div>
@@ -110,7 +108,7 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
               transition={{ duration: 0.3, delay: index * 0.15 + 0.2 + idx * 0.08 }}
               className="flex items-start text-[var(--text-secondary)] leading-relaxed"
             >
-              <span className="text-[var(--accent)] mr-3 mt-1 shrink-0">▹</span>
+              <span className="text-[var(--primary)] mr-3 mt-1 shrink-0">▹</span>
               <span>{resp}</span>
             </motion.li>
           ))}
@@ -126,6 +124,10 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-20 relative">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+      </div>
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -134,8 +136,9 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
+          <span className="text-sm font-mono text-[var(--text-secondary)] tracking-widest uppercase mb-2 block">Experience</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">工作经历</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[var(--primary)] mx-auto rounded-full" />
         </motion.div>
 
         <div className="relative">

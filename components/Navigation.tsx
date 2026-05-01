@@ -39,7 +39,6 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -52,7 +51,7 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[var(--background)]/70 backdrop-blur-xl border-b border-[var(--card-border)]/50 shadow-lg shadow-black/5'
+          ? 'bg-[var(--background)]/80 backdrop-blur-xl border-b border-[var(--card-border)] shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -60,7 +59,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <motion.a
             href="#hero"
-            className="text-xl font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent"
+            className="text-xl font-bold font-mono text-[var(--text-primary)]"
             whileHover={{ scale: 1.05 }}
           >
             Leon
@@ -72,9 +71,9 @@ export default function Navigation() {
               <a
                 key={item.name}
                 href={item.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all relative ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium font-mono transition-all relative ${
                   activeSection === item.href.slice(1)
-                    ? 'text-[var(--primary)]'
+                    ? 'text-[var(--text-primary)]'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
@@ -82,7 +81,7 @@ export default function Navigation() {
                 {activeSection === item.href.slice(1) && (
                   <motion.div
                     layoutId="nav-active"
-                    className="absolute inset-0 bg-[var(--primary)]/10 rounded-lg -z-10"
+                    className="absolute inset-0 bg-[var(--primary)]/8 border border-[var(--card-border)] rounded-lg -z-10"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -125,9 +124,9 @@ export default function Navigation() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium font-mono transition-colors ${
                     activeSection === item.href.slice(1)
-                      ? 'text-[var(--primary)] bg-[var(--primary)]/10'
+                      ? 'text-[var(--text-primary)] bg-[var(--primary)]/8'
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--card-bg)]'
                   }`}
                 >

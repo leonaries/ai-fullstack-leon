@@ -30,12 +30,12 @@ export default function CardHoverEffect({
       whileHover={{ scale: 1.02, y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Hover border gradient glow */}
+      {/* Hover border gradient glow - updated to accent color */}
       <div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300"
         style={{
           opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(99,102,241,0.15), rgba(34,211,238,0.08), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(0,255,200,0.12), rgba(108,92,231,0.06), transparent 40%)`,
         }}
       />
       {children}
