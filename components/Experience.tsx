@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { SpotlightCard } from './ui/spotlight-card';
 
 const experiences = [
   {
@@ -88,32 +89,34 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
 
       <TimelineDot index={index} isInView={isInView} />
 
-      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 hover:border-[var(--primary)]/40 transition-all duration-300">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-          <div>
-            <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{experience.company}</h3>
-            <p className="text-lg text-[var(--text-primary)] font-medium font-mono">{experience.position}</p>
+      <SpotlightCard>
+        <div className="p-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <div>
+              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{experience.company}</h3>
+              <p className="text-lg text-[var(--text-primary)] font-medium font-mono">{experience.position}</p>
+            </div>
+            <span className="text-sm text-[var(--text-secondary)] bg-[var(--card-bg)] px-4 py-1.5 rounded-full border border-[var(--card-border)] mt-2 md:mt-0 inline-block font-mono">
+              {experience.period}
+            </span>
           </div>
-          <span className="text-sm text-[var(--text-secondary)] bg-[var(--card-bg)] px-4 py-1.5 rounded-full border border-[var(--card-border)] mt-2 md:mt-0 inline-block font-mono">
-            {experience.period}
-          </span>
-        </div>
 
-        <ul className="space-y-3">
-          {experience.responsibilities.map((resp, idx) => (
-            <motion.li
-              key={idx}
-              initial={{ opacity: 0, x: -15 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.3, delay: index * 0.15 + 0.2 + idx * 0.08 }}
-              className="flex items-start text-[var(--text-secondary)] leading-relaxed"
-            >
-              <span className="text-[var(--primary)] mr-3 mt-1 shrink-0">▹</span>
-              <span>{resp}</span>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+          <ul className="space-y-3">
+            {experience.responsibilities.map((resp, idx) => (
+              <motion.li
+                key={idx}
+                initial={{ opacity: 0, x: -15 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.3, delay: index * 0.15 + 0.2 + idx * 0.08 }}
+                className="flex items-start text-[var(--text-secondary)] leading-relaxed"
+              >
+                <span className="text-[var(--primary)] mr-3 mt-1 shrink-0">▹</span>
+                <span>{resp}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </SpotlightCard>
     </motion.div>
   );
 }

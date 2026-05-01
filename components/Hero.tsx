@@ -219,6 +219,15 @@ export default function Hero() {
                 className="w-full h-full"
               />
             </div>
+            {/* LEON text overlay on robot chest */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span
+                className="font-mono font-bold text-sm tracking-[0.3em] text-[var(--background)] dark:text-[var(--background)] opacity-80 mt-[60px] ml-[-10px]"
+                style={{ textShadow: '0 0 8px rgba(128,128,128,0.4)' }}
+              >
+                LEON
+              </span>
+            </div>
             {/* Decorative frame */}
             <div className="absolute top-4 right-4 w-24 h-24 border-t border-r border-[var(--card-border)] rounded-tr-xl pointer-events-none" />
             <div className="absolute bottom-4 left-4 w-24 h-24 border-b border-l border-[var(--card-border)] rounded-bl-xl pointer-events-none" />
