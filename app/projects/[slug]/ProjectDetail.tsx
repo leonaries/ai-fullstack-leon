@@ -150,12 +150,12 @@ export default function ProjectDetail({ project }: { project: Project }) {
           >
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--card-bg)] border border-transparent hover:border-[var(--card-border)] transition-all text-sm font-mono mb-8"
+              className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-sm mb-8"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              cd ../projects
+              返回项目列表
             </Link>
           </motion.div>
 
