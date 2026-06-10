@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?{}[]<>/\\|~^';
 const REVEAL_TEXT = 'Leon';
 const DURATION = 2800; // total intro duration in ms
 
-function MatrixRain({ isDone }: { isDone: boolean }) {
+function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -136,7 +136,7 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
         >
-          <MatrixRain isDone={isDone} />
+          <MatrixRain />
           <div className="relative z-10 text-center">
             <ScrambleText text={REVEAL_TEXT} startDelay={600} />
             <motion.p
