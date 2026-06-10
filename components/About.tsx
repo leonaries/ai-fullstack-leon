@@ -8,7 +8,7 @@ const aboutCards = [
   {
     icon: '📍',
     title: '基本信息',
-    content: '西南财经大学 / 2017届本科 / 求职意向：全栈开发(偏前端)',
+    content: '求职意向：AI全栈开发',
     className: 'md:col-span-1',
   },
   {
