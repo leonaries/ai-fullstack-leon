@@ -156,7 +156,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8 max-w-lg"
             >
-              8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
+              8 年全栈开发经验，以 React、TypeScript、Node.js、Python 为核心技术栈。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
             </motion.p>
 
             <motion.div
@@ -190,7 +190,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap gap-2 mt-8"
             >
-              {['React', 'TypeScript', 'Web3', 'AI', 'Node.js'].map((tag) => (
+              {['React', 'TypeScript', 'Web3', 'AI', 'Node.js', 'Python'].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-xs font-mono text-[var(--text-secondary)] border border-[var(--card-border)] rounded"

@@ -9,6 +9,7 @@ const navItems = [
   { name: '关于', href: '#about' },
   { name: '经历', href: '#experience' },
   { name: '项目', href: '#projects' },
+  { name: '博客', href: '/blog', target: '_blank' },
   { name: '技能', href: '#skills' },
   { name: '联系', href: '#contact' },
 ];
@@ -22,7 +23,7 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = navItems.map(item => item.href.slice(1));
+      const sections = navItems.filter(item => item.href.startsWith('#')).map(item => item.href.slice(1));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el) {
@@ -71,6 +72,8 @@ export default function Navigation() {
               <a
                 key={item.name}
                 href={item.href}
+                target={item.target}
+                rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                 className={`px-4 py-2 rounded-lg text-sm font-medium font-mono transition-all relative ${
                   activeSection === item.href.slice(1)
                     ? 'text-[var(--text-primary)]'
@@ -78,7 +81,7 @@ export default function Navigation() {
                 }`}
               >
                 {item.name}
-                {activeSection === item.href.slice(1) && (
+                {item.href.startsWith('#') && activeSection === item.href.slice(1) && (
                   <motion.div
                     layoutId="nav-active"
                     className="absolute inset-0 bg-[var(--primary)]/8 border border-[var(--card-border)] rounded-lg -z-10"
@@ -123,9 +126,11 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
+                  target={item.target}
+                  rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block px-4 py-3 rounded-lg text-sm font-medium font-mono transition-colors ${
-                    activeSection === item.href.slice(1)
+                    item.href.startsWith('#') && activeSection === item.href.slice(1)
                       ? 'text-[var(--text-primary)] bg-[var(--primary)]/8'
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--card-bg)]'
                   }`}
