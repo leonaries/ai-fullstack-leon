@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leon - 全栈开发工程师（偏前端）",
-  description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效。",
-  keywords: ["Web3", "DeFi", "React", "Next.js", "TypeScript", "Node.js", "全栈开发", "AI", "Wagmi", "NestJS", "Python"],
+  title: "Leon - AI 应用开发工程师",
+  description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关、FastAPI、Node.js 与前端工程化。",
+  keywords: ["AI 应用开发", "AI 全栈开发", "RAG", "Agent", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP"],
   authors: [{ name: "Leon" }],
   openGraph: {
-    title: "Leon - 全栈开发工程师（偏前端）",
-    description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
+    title: "Leon - AI 应用开发工程师",
+    description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
     url: "https://leonaries.cn",
     siteName: "Leon Portfolio",
     locale: "zh_CN",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leon - 全栈开发工程师（偏前端）",
-    description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
+    title: "Leon - AI 应用开发工程师",
+    description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
   },
 };
 
@@ -55,16 +55,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Leon",
-              
-              jobTitle: "全栈开发工程师（偏前端）",
-              description: "8 年全栈开发经验，以 React、TypeScript、Node.js 为核心技术栈，精通 Web3 DeFi 开发与 AI 工程化提效",
+              jobTitle: "AI 应用开发工程师",
+              description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
               email: "leonaries9527@gmail.com",
               url: "https://leonaries.cn",
-              alumniOf: {
-                "@type": "EducationalOrganization",
-                name: "西南财经大学",
-              },
-              knowsAbout: ["Web3", "DeFi", "React", "Next.js", "TypeScript", "Node.js", "NestJS", "Python", "AI", "LangChain", "RAG", "Multi-Agent"],
+              knowsAbout: ["AI 应用开发", "RAG", "Agent Workflow", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP", "LLM Gateway"],
             }),
           }}
         />

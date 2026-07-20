@@ -145,7 +145,7 @@ export default function Hero() {
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-[2px] bg-[var(--primary)]" />
                 <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium font-mono">
-                  全栈开发工程师
+                  AI 应用开发工程师
                 </p>
               </div>
             </motion.div>
@@ -156,7 +156,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8 max-w-lg"
             >
-              8 年全栈开发经验，以 React、TypeScript、Node.js、Python 为核心技术栈。从传统互联网到 Web3 DeFi 再到 AI 驱动开发，持续探索技术边界。
+              9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地。以 Node.js、Python、RAG、Agent Workflow 与前端工程化为核心，把大模型能力接入真实业务链路。
             </motion.p>
 
             <motion.div
@@ -190,7 +190,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap gap-2 mt-8"
             >
-              {['React', 'TypeScript', 'Web3', 'AI', 'Node.js', 'Python'].map((tag) => (
+              {['AI Agent', 'RAG', 'LangGraph', 'FastAPI', 'Node.js', 'React'].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-xs font-mono text-[var(--text-secondary)] border border-[var(--card-border)] rounded"

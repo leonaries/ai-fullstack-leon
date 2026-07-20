@@ -6,34 +6,34 @@ import { SpotlightCard } from './ui/spotlight-card';
 
 const skills = [
   {
-    category: '前端开发',
-    icon: '⚛️',
-    items: ['React', 'Vue', 'Next.js', 'Nuxt', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'SSR', '响应式布局', '国际化', '多端适配'],
+    category: 'AI 应用工程',
+    icon: '🤖',
+    items: ['LangGraph', 'LangChain', 'Multi-Agent', 'Tool Calling', 'Checkpointer', 'SSE 流式网关', 'MCP Server', 'Prompt 管理', 'LLM-as-a-Judge', 'JSON Mode', 'Pydantic Schema'],
   },
   {
-    category: 'Web3',
-    icon: '🔗',
-    items: ['Wagmi', 'Viem', 'Ethers.js', 'Reown AppKit', '钱包接入', '合约调用', '事件监听', '链上数据读取', '交易生命周期', 'Gas/Nonce'],
+    category: 'RAG 与模型工程',
+    icon: '🧠',
+    items: ['混合检索', '语义切片', 'BM25', 'HNSW', 'Cross-Encoder Rerank', 'pgvector', 'Milvus', 'Embedding', 'SFT', 'QLoRA', 'LoRA', 'KV Cache', 'Prefix Caching'],
   },
   {
-    category: '后端开发',
+    category: '全栈开发',
     icon: '🚀',
-    items: ['Node.js', 'NestJS', 'TypeORM', 'Python', 'FastAPI', 'SQLAlchemy', 'LangChain', 'PostgreSQL', 'Supabase', 'Docker'],
+    items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI', 'asyncio', 'React', 'Next.js', 'TypeScript', 'PostgreSQL', 'Docker', 'Linux'],
   },
   {
     category: '工程化',
     icon: '🛠️',
-    items: ['Webpack', 'Vite', 'pnpm', 'Lerna', 'Storybook', 'Biome', 'Jenkins', 'OpenAPI-TypeScript', 'CI/CD', 'Git', 'Monorepo'],
+    items: ['结构化日志', 'Request-ID', 'Trace', '灰度发布', '回滚机制', '限流降级', '内存泄漏分析', 'CI/CD', 'Git', 'Monorepo', 'OpenAPI-TypeScript'],
   },
   {
-    category: 'AI 能力',
-    icon: '🤖',
-    items: ['Claude Code', 'Codex', 'Gemini', 'Dify', 'Coze', 'Multi-Agent', 'Skills', 'RAG', 'MCP', 'LangChain', 'Workflow', 'LLM 应用集成'],
+    category: '实时语音与多模态',
+    icon: '🎙️',
+    items: ['ASR', 'TTS', '声音复刻', 'RTC', 'FEC 前向纠错', 'Jitter Buffer', 'OCR', 'VLM', 'ASR 转写', '素材中心', '直播切片'],
   },
   {
-    category: '性能与基建',
-    icon: '📐',
-    items: ['浏览器渲染机制', 'HTTP 协议', '缓存策略', '首屏优化', '构建优化', '通用组件封装', '低代码报表', '接口层抽象', '规范治理'],
+    category: '前端与 Web3',
+    icon: '🔗',
+    items: ['React Hooks', 'Vue', 'Ant Design', 'Tailwind CSS', 'ECharts', 'Wagmi', 'Viem', 'Ethers.js', 'Reown AppKit', '钱包接入', '链上数据'],
   },
 ];
 
