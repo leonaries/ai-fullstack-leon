@@ -8,32 +8,32 @@ const skills = [
   {
     category: 'AI 应用工程',
     icon: '🤖',
-    items: ['LangGraph', 'LangChain', 'Multi-Agent', 'Tool Calling', 'Checkpointer', 'SSE 流式网关', 'MCP Server', 'Prompt 管理', 'LLM-as-a-Judge', 'JSON Mode', 'Pydantic Schema'],
+    items: ['Prompt Engineering', 'Prompt 版本管理', '自动化评测', '负样本优化', 'Pydantic Schema', 'JSON Mode', 'Function Calling', 'Tool Use', 'ReAct', 'Multi-Agent'],
   },
   {
     category: 'RAG 与模型工程',
     icon: '🧠',
-    items: ['混合检索', '语义切片', 'BM25', 'HNSW', 'Cross-Encoder Rerank', 'pgvector', 'Milvus', 'Embedding', 'SFT', 'QLoRA', 'LoRA', 'KV Cache', 'Prefix Caching'],
+    items: ['文档切片', 'Embedding', 'HNSW', '混合检索', 'Cross-Encoder Rerank', 'Metadata 过滤', '权重调优', 'pgvector', 'Milvus', 'SFT', 'QLoRA', 'LoRA'],
+  },
+  {
+    category: 'LLM 性能与工作流',
+    icon: '🚀',
+    items: ['Prefix Caching', 'KV Cache', 'TTFT 优化', 'Token 分级控制', '多模型动态路由', 'LangGraph', 'LangChain', 'SubGraph', 'Checkpointer', 'LangSmith'],
   },
   {
     category: '全栈开发',
-    icon: '🚀',
-    items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI', 'asyncio', 'React', 'Next.js', 'TypeScript', 'PostgreSQL', 'Docker', 'Linux'],
-  },
-  {
-    category: '工程化',
     icon: '🛠️',
-    items: ['结构化日志', 'Request-ID', 'Trace', '灰度发布', '回滚机制', '限流降级', '内存泄漏分析', 'CI/CD', 'Git', 'Monorepo', 'OpenAPI-TypeScript'],
+    items: ['Next.js', 'React', 'Vue', 'TypeScript', 'JavaScript', 'Python', 'FastAPI', 'asyncio', 'Pydantic', 'Node.js', 'NestJS', 'Express'],
   },
   {
-    category: '实时语音与多模态',
+    category: '前端 AI 交互',
     icon: '🎙️',
-    items: ['ASR', 'TTS', '声音复刻', 'RTC', 'FEC 前向纠错', 'Jitter Buffer', 'OCR', 'VLM', 'ASR 转写', '素材中心', '直播切片'],
+    items: ['AI 对话界面', 'ReadableStream', 'SSE', 'Markdown 实时解析', 'Agent 工作流可视化', '组件化架构', 'ASR', 'TTS', 'OCR', 'VLM'],
   },
   {
-    category: '前端与 Web3',
+    category: '工程与数据',
     icon: '🔗',
-    items: ['React Hooks', 'Vue', 'Ant Design', 'Tailwind CSS', 'ECharts', 'Wagmi', 'Viem', 'Ethers.js', 'Reown AppKit', '钱包接入', '链上数据'],
+    items: ['PostgreSQL', '向量数据库', 'Docker', 'Linux', 'Git', '结构化日志', 'Request-ID', 'Trace', 'CI/CD', '灰度发布', '回滚机制', '限流降级'],
   },
 ];
 

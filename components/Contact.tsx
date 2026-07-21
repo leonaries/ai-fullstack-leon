@@ -62,7 +62,7 @@ export default function Contact() {
                 让我们一起创造精彩
               </h3>
               <p className="text-[var(--text-secondary)] leading-relaxed">
-                如果您需要 AI 应用落地、RAG 知识库、Agent 工作流、LLM 网关或全栈工程交付，欢迎随时与我联系。
+                如果您需要 Prompt Engineering、RAG 知识库、Agent 工作流、LLM 推理优化或 AI 全栈工程交付，欢迎随时与我联系。
               </p>
             </div>
 

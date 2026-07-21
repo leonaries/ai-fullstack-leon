@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leon - AI 应用开发工程师",
-  description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关、FastAPI、Node.js 与前端工程化。",
-  keywords: ["AI 应用开发", "AI 全栈开发", "RAG", "Agent", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP"],
+  title: "Leon - AI 应用架构师",
+  description: "9 年 Web / 全栈经验，聚焦 AI 应用架构与全链路交付，擅长 Prompt Engineering、RAG、Agent、LangGraph / LangChain、LLM 推理优化、FastAPI、Node.js 与 AI 前端交互。",
+  keywords: ["AI 应用架构", "AI 全栈开发", "Prompt Engineering", "RAG", "Agent", "Function Calling", "ReAct", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP"],
   authors: [{ name: "Leon" }],
   openGraph: {
-    title: "Leon - AI 应用开发工程师",
-    description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
+    title: "Leon - AI 应用架构师",
+    description: "9 年 Web / 全栈经验，聚焦 AI 应用架构与全链路交付，擅长 Prompt Engineering、RAG、Agent 工作流与 LLM 推理优化。",
     url: "https://leonaries.cn",
     siteName: "Leon Portfolio",
     locale: "zh_CN",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leon - AI 应用开发工程师",
-    description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
+    title: "Leon - AI 应用架构师",
+    description: "9 年 Web / 全栈经验，聚焦 AI 应用架构与全链路交付，擅长 Prompt Engineering、RAG、Agent 工作流与 LLM 推理优化。",
   },
 };
 
@@ -55,11 +55,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Leon",
-              jobTitle: "AI 应用开发工程师",
-              description: "9 年 Web / 全栈经验，聚焦 AI 应用从 0 到 1 落地，擅长 RAG、Agent Workflow、LLM 网关与全栈工程交付。",
+              jobTitle: "AI 应用架构师",
+              description: "9 年 Web / 全栈经验，聚焦 AI 应用架构与全链路交付，擅长 Prompt Engineering、RAG、Agent 工作流与 LLM 推理优化。",
               email: "leonaries9527@gmail.com",
               url: "https://leonaries.cn",
-              knowsAbout: ["AI 应用开发", "RAG", "Agent Workflow", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP", "LLM Gateway"],
+              knowsAbout: ["AI 应用架构", "Prompt Engineering", "RAG", "Function Calling", "Tool Use", "ReAct", "Multi-Agent", "LangGraph", "LangChain", "FastAPI", "Node.js", "React", "TypeScript", "Python", "MCP", "LLM 推理优化"],
             }),
           }}
         />

@@ -7,8 +7,8 @@ import { SpotlightCard } from './ui/spotlight-card';
 const experiences = [
   {
     period: '2024.12 - 至今',
-    company: '电商 AI 应用团队',
-    position: 'AI 应用技术负责人',
+    company: '深圳市翌升科技有限公司',
+    position: 'AI 应用架构师',
     responsibilities: [
       '负责电商 AI 应用体系从 0 到 1 建设，覆盖私域销售、独立站售前、内容生产、直播复用、商品素材与销售培训',
       '主导 AI 销售辅助与知识库建设，结合会话记忆、意向识别、混合检索、素材推荐与人工接管，提升复杂商品咨询的稳定性',
@@ -18,8 +18,8 @@ const experiences = [
   },
   {
     period: '2019.06 - 2024.12',
-    company: '物流科技平台',
-    position: '前端架构师',
+    company: '北京中交兴路信息科技有限公司',
+    position: '前端架构师 / 全栈开发',
     responsibilities: [
       '负责物流业务 Web 系统的前端架构与 0 到 1 交付，完成技术选型、应用骨架、状态与接口规范设计',
       '建设通用组件与工程化体系，统一构建配置、代码规范、质量检查和发布流程，降低多团队协作成本',
@@ -29,8 +29,8 @@ const experiences = [
   },
   {
     period: '2017.07 - 2019.04',
-    company: '新潮传媒集团股份有限公司',
-    position: '前端工程师',
+    company: '新潮传媒集团',
+    position: '高级前端工程师',
     responsibilities: [
       '参与网站项目需求讨论、研发时间评估、测试用例评审',
       '负责网站业务逻辑代码的编辑以及前端页面实现和数据渲染',
