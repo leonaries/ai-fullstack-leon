@@ -33,7 +33,7 @@ const skills = [
   {
     category: '工程与数据',
     icon: '🔗',
-    items: ['PostgreSQL', '向量数据库', 'Docker', 'Linux', 'Git', '结构化日志', 'Request-ID', 'Trace', 'CI/CD', '灰度发布', '回滚机制', '限流降级'],
+    items: ['PostgreSQL', '向量数据库', 'AWS', 'CloudFlare', '阿里云', 'Docker', 'Linux', 'Git 工作流', 'CI/CD 自动化部署', '结构化日志', 'Request-ID', 'Trace'],
   },
 ];
 

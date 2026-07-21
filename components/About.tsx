@@ -26,7 +26,7 @@ const aboutCards = [
   {
     icon: '🛠',
     title: '技术栈',
-    tags: ['Next.js', 'React', 'Vue', 'TypeScript', 'JavaScript', 'Python', 'FastAPI', 'asyncio', 'Pydantic', 'Node.js', 'NestJS', 'Express', 'PostgreSQL', 'Milvus', 'Docker'],
+    tags: ['Next.js', 'React', 'Vue', 'TypeScript', 'JavaScript', 'Python', 'FastAPI', 'asyncio', 'Pydantic', 'Node.js', 'NestJS', 'Express', 'PostgreSQL', 'Milvus', 'Docker', 'AWS', 'CloudFlare', '阿里云', 'CI/CD'],
     className: 'md:col-span-2',
   },
   {
@@ -44,7 +44,7 @@ const aboutCards = [
   {
     icon: '🚀',
     title: '工程优势',
-    content: '熟悉 AI 对话界面、ReadableStream / SSE 流式渲染、Markdown 实时解析、Agent 工作流可视化与全链路交付',
+    content: '熟悉 AI 对话界面、ReadableStream / SSE 流式渲染、云平台部署、Docker 容器化、Linux 运维、Git 工作流与 CI/CD 自动化部署',
     className: 'md:col-span-2',
   },
 ];
